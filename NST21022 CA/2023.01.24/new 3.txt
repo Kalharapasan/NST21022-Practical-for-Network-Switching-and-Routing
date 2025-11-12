@@ -1,0 +1,43 @@
+# Subnet Table
+# Subnet Number | Network Address | First Usable Host | Last Usable Host | Broadcast Address
+1    172.168.10.0/28    172.168.10.1    172.168.10.14    172.168.10.15
+2    172.168.10.16/28   172.168.10.17   172.168.10.30    172.168.10.31
+3    172.168.10.32/28   172.168.10.33   172.168.10.46    172.168.10.47
+4    172.168.10.48/28   172.168.10.49   172.168.10.62    172.168.10.63
+5    172.168.10.64/28   172.168.10.65   172.168.10.78    172.168.10.79
+6    172.168.10.80/28   172.168.10.81   172.168.10.94    172.168.10.95
+7    172.168.10.96/28   172.168.10.97   172.168.10.110   172.168.10.111
+8    172.168.10.112/28  172.168.10.113  172.168.10.126   172.168.10.127
+9    172.168.10.128/28  172.168.10.129  172.168.10.142   172.168.10.143
+10   172.168.10.144/28  172.168.10.145  172.168.10.158   172.168.10.159
+
+# Configuration for R1
+interface GigabitEthernet0/0
+ ip address 172.168.10.1 255.255.255.240
+ no shutdown
+
+interface GigabitEthernet0/1
+ ip address 172.168.10.17 255.255.255.240
+ no shutdown
+
+# Configuration for R2
+interface GigabitEthernet0/0
+ ip address 172.168.10.33 255.255.255.240
+ no shutdown
+
+interface GigabitEthernet0/1
+ ip address 172.168.10.49 255.255.255.240
+ no shutdown
+
+# Configuration for PCs in each subnet (example for subnet 1)
+interface FastEthernet0
+ ip address 172.168.10.2 255.255.255.240
+ no shutdown
+
+# Verify connectivity (ping from PC to R1, R2, etc.)
+
+# Display all the configuration
+show running-config
+
+# Save all the configuration
+write memory

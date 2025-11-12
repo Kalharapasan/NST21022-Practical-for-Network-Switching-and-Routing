@@ -1,0 +1,79 @@
+Switch 01
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.2 255.255.255.240
+no shutdown
+
+Switch 02
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.18 255.255.255.240
+no shutdown
+
+Switch 03
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.34 255.255.255.240
+no shutdown
+
+Switch 04
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.50 255.255.255.240
+no shutdown
+
+Switch 05
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.66 255.255.255.240
+no shutdown
+
+Switch 06
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.82 255.255.255.240
+no shutdown
+
+Switch 07
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.98 255.255.255.240
+no shutdown
+
+Switch 08
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.114 255.255.255.240
+no shutdown
+
+Switch 09
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.130 255.255.255.240
+no shutdown
+
+Switch 10
+
+Enable
+configure terminal
+interface vlan 1
+ip address 172.16.1.146 255.255.255.240
+no shutdown

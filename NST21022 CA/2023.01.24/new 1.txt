@@ -1,0 +1,39 @@
+# Enter global configuration mode
+enable
+configure terminal
+
+# Configure host name
+hostname R1  # Use the appropriate router name based on your addressing table
+
+# Set console password
+line console 0
+password 1234
+login
+exit
+
+# Set privileged EXEC mode encrypted password
+enable secret cisco
+
+# Configure domain
+ip domain-name nst21022.com
+
+
+crypto key generate rsa modulus 1024
+
+
+
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exec-timeout 6 0 
+
+
+service password-encryption
+
+
+banner motd  #
+Authorized Access Only
+#
+
+copy running-config startup-config

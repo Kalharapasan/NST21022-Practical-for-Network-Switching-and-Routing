@@ -1,0 +1,31 @@
+# Enter global configuration mode
+enable
+configure terminal
+
+# Generate RSA key pair for SSH
+crypto key generate rsa modulus 1024
+
+# Configure SSH
+ip ssh version 2
+
+# Create a username with a secret (password)
+username root secret cisco
+
+# Configure VTY lines for SSH access
+line vty 0 15
+ transport input ssh
+ login local
+
+# Set the EXEC mode timeout to 6 minutes on the VTY lines
+exec-timeout 6 0
+
+# Enable SSH on the vty lines with local authentication
+line vty 0 15
+ transport input ssh
+ login local
+
+# Exit configuration mode
+end
+
+# Save the configuration
+write memory

@@ -1,0 +1,15 @@
+PC-01
+	IP Addresse -192.168.1.4
+	Subnet Mask -192.168.1.1
+	Default Gateway -255.255.255.128
+
+PC-02
+	IP Addresse -192.168.1.195
+	Subnet Mask -192.168.1.193
+	Default Gateway -255.255.255.224
+
+PC-03
+	IP Addresse -192.168.1.131
+	Subnet Mask -192.168.1.129
+	Default Gateway -255.255.255.192
+

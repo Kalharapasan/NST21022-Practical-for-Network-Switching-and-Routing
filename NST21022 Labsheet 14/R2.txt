@@ -1,0 +1,26 @@
+R2>enable
+R2#configure terminal
+
+R2(config-if)#interface s0/1/0
+R2(config-if)#ip address 192.168.4.1 255.255.255.0
+R2(config-if)#no shutdown
+R2(config-if)#exit
+
+R2(config)#interface s0/1/1
+R2(config-if)#ip address 192.168.5.1 255.255.255.0
+R2(config-if)#no shutdown
+R2(config-if)#exit
+
+R2(dhcp-config)# ip dhcp excluded-address 192.168.1.1 192.168.1.10
+R2(config)#ip dhcp excluded-address 192.168.3.1 192.168.3.10
+
+R2(config)#ip dhcp pool R1-LAN
+R2(dhcp-config)#network 192.168.1.0 255.255.255.0
+R2(dhcp-config)# default-router 192.168.1.1
+R2(dhcp-config)#dns-server 192.168.2.10
+
+R2(config)#ip dhcp pool R3-LAN
+R2(dhcp-config)#network 192.168.3.0 255.255.255.0
+R2(dhcp-config)#default-router 192.168.3.1
+R2(dhcp-config)#dns-server 192.168.2.10
+R2(dhcp-config)#

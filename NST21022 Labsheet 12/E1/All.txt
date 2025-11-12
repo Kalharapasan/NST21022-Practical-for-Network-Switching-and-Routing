@@ -1,0 +1,102 @@
+S1
+-----------------------------------------------------------
+enable
+configure terminal
+hostname S1
+ip domain-name ccna.coma
+vlan 10 
+name Red
+vlan 20
+name Green
+vlan 30
+name  Blue
+vlan 999
+name Native
+
+interface range g0/1-2
+switchport mode trunk
+switchport trunk native vlan 999
+interface g0/1
+switchport mode dynamic desirable
+interface g0/2
+switchport mode trunk
+switchport nonegotiate
+exit
+
+exit
+copy running-config startup-config
+show dtp
+show interface trunk
+show vlan brief
+
+S2
+-------------------------------------------------------------
+enable
+configure terminal
+hostname S2
+ip domain-name ccna.com
+vlan 10
+name Res
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+vlan 999
+name Native
+exit
+interface fa0/1
+int range fa0/1-8	
+switchport mode access
+switchport access vlan 10
+exit
+interface fa0/11
+int range fa0/9-16
+switchport mode access	
+switchport access vlan 20
+exit
+interface fa0/21
+int range fa0/17-24	
+switchport mode access
+switchport access vlan 30
+exit
+interface g0/1
+switchport mode trunk
+switchport trunk native vlan 999 
+copy running-config startup-config
+
+S3
+-------------------------------------------------------------
+enable
+configure terminal
+hostname S3
+ip domain-name ccna.com
+vlan 10
+name Res
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+vlan 999
+name Native
+interface fa0/1
+int range fa0/1-8	
+switchport mode access
+switchport access vlan 10
+exit
+interface fa0/11
+int range fa0/9-16
+switchport mode access
+switchport access vlan 20
+interface fa0/21
+int range fa0/17-24
+switchport mode access
+switchport access vlan 30
+interface g0/2
+switchport mode trunk
+switchport trunk native vlan 999
+switchport nonegotiate  
+copy running-config startup-config

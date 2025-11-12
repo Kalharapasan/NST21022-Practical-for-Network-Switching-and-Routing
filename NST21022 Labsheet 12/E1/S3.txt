@@ -1,0 +1,38 @@
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S3
+S3(config)#ip domain-name ccna.com
+S3(config)#vlan 10
+S3(config-vlan)#name Red
+S3(config-vlan)#valn 20
+S3(config-vlan)#vlan 20
+S3(config-vlan)#name Green
+S3(config-vlan)#vlan 30
+S3(config-vlan)#name Blue
+S3(config-vlan)#vlan 999
+S3(config-vlan)#name Native
+S3(config-vlan)#interface fa0/1
+S3(config-if)#int range fa0/1-8	
+S3(config-if-range)#switchport mode access
+S3(config-if-range)#switchport access vlan 10
+S3(config-if-range)#exit
+S3(config)#interface fa0/11
+S3(config-if)#int range fa0/9-16
+S3(config-if-range)#switchport mode access
+S3(config-if-range)#switchport access vlan 20
+S3(config-if-range)#interface fa0/21
+S3(config-if)#int range fa0/17-24
+S3(config-if-range)#switchport mode access
+S3(config-if-range)#switchport access vlan 30
+S3(config-if)#interface g0/2
+S3(config-if)#switchport mode trunk
+S3(config-if)#switchport trunk native vlan 999
+S3(config-if)#switchport nonegotiate  
+S3(config-if)#
+S3#
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#

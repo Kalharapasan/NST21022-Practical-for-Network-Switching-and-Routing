@@ -1,0 +1,78 @@
+R1
+------------------------------------------------------------------
+
+enable
+configure terminal
+
+interface g0/0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+interface s0/1/0
+ip address 192.168.4.2 255.255.255.0
+no shutdown
+exit
+
+interface g0/0/0
+ip helper-address 192.168.4.1
+no shutdown
+exit
+copy running-config startup-config
+
+------------------------------------------------------------------
+R2
+------------------------------------------------------------------
+enable
+configure terminal
+
+
+
+interface s0/1/0
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+exit
+
+interface s0/1/1
+ip address 192.168.5.1 255.255.255.0
+no shutdown
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+
+ip dhcp excluded-address 192.168.3.1 192.168.3.10
+
+ip dhcp pool R1-LAN
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 192.168.2.10
+
+ip dhcp pool R3-LAN
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 192.168.2.10
+
+copy running-config startup-config
+
+------------------------------------------------------------------
+R3
+------------------------------------------------------------------
+enable
+configure terminal
+
+
+interface g0/0/0
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+exit
+
+interface s0/1/1
+ip address 192.168.5.2 255.255.255.0
+no shutdown
+
+interface g0/0/0
+ip helper-address 192.168.5.1
+no shutdown
+exit
+
+
+copy running-config startup-config

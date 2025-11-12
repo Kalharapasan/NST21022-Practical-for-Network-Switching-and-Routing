@@ -1,0 +1,15 @@
+Enable
+Configure terminal
+
+ipv6 unicast-routing
+interface g0/0/0
+ipv6 address 2001:db8:1:4::1/64
+no shutdown
+
+interface g0/0/1
+ipv6 address 2001:db8:1:5::1/64
+no shutdown
+
+interface s0/1/1
+ipv6 address 2001:db8:1:8::2/64
+no shutdown

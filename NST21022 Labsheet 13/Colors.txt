@@ -1,0 +1,74 @@
+
+Switch>enable
+Switch#configure terminal
+Switch(config)#hostname Colors
+Colors(config)#
+Colors(config)#vlan 10
+Colors(config-vlan)#name Red
+Colors(config-vlan)#vlan 20
+Colors(config-vlan)#name Green
+Colors(config-vlan)#vlan 30
+Colors(config-vlan)#name Blue
+Colors(config-vlan)#vlan 40
+Colors(config-vlan)#name Yellow
+Colors(config-vlan)#vlan 50
+Colors(config-vlan)#name White
+Colors(config-vlan)#vlan 60
+Colors(config-vlan)#name Black
+Colors(config-vlan)#interface range g0/1 - g0/2
+Colors(config-if-range)#switchport mode access
+Colors(config-if-range)#switchport mode trunk
+Colors#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Colors(config)#interface vlan 10
+Colors(config-if)#ip address 192.168.1.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#
+Colors(config-if)#interface vlan 20
+Colors(config-if)#ip address 192.168.2.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#
+Colors(config-if)#interface vlan 30
+Colors(config-if)#ip address 192.168.3.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#
+Colors(config-if)#interface vlan 40
+Colors(config-if)#ip address 192.168.4.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#
+Colors(config-if)#interface vlan 50
+Colors(config-if)#ip address 192.168.5.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#
+Colors(config-if)#interface vlan 60
+Colors(config-if)#ip address 192.168.6.1 255.255.255.0
+Colors(config-if)#no shutdown
+Colors(config-if)#interface range g0/1 - g0/2
+Colors(config-if-range)#switchport mode trunk
+Colors(config-if-range)#switchport trunk encapsulation dot1q
+Colors(config-if-range)#ip routing
+Colors(config)#
+Colors#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Colors#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Colors#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, Vlan10
+C    192.168.2.0/24 is directly connected, Vlan20
+C    192.168.3.0/24 is directly connected, Vlan30
+C    192.168.4.0/24 is directly connected, Vlan40
+C    192.168.5.0/24 is directly connected, Vlan50
+C    192.168.6.0/24 is directly connected, Vlan60

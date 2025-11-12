@@ -1,0 +1,35 @@
+enable 
+configure terminal
+hostname R1
+no ip domain-lookup
+line console 0
+password 1234
+login
+end
+config t
+enable secret class
+service password-encryption
+
+interface g0/0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown  
+
+
+interface g0/0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+banner motd $
+
+##################################################################
+##################################################################
+
+              Autherized user Only
+
+##################################################################
+##################################################################
+$
+
+copy running-config startup-config
+
+show running-config

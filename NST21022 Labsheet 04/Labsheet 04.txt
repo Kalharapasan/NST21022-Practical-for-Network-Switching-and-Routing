@@ -1,0 +1,38 @@
+Router> enable
+Router# configure terminal
+Router(config)# hostname R1
+
+R1(config)# no ip domain-lookup
+
+R1(config)# line console 0
+R1(config-line)# password 1234
+R1(config-line)# login
+
+R1(config)# line vty 0 15
+R1(config-line)# password 1234
+R1(config-line)# login
+
+R1(config)# enable secret 1234
+R1(config)# service password-encryption
+
+R1(config)# interface f0/0
+R1(config-if)# ip address 10.1.10.1 255.255.255.0
+R1(config-if)# no shutdown
+
+R1(config)# interface f0/1
+R1(config-if)# ip address 10.1.20.1 255.255.255.0
+R1(config-if)# no shutdown
+
+R1(config)# interface f1/0
+R1(config-if)# ip address 172.6.10.1 255.255.255.0
+R1(config-if)# no shutdown
+
+R1(config)# interface f1/1
+R1(config-if)# ip address 172.6.20.1 255.255.255.0
+R1(config-if)# no shutdown
+
+R1(config)# banner motd # Authorized Access Only! #
+
+R1# write memory
+
+R1# show running-config

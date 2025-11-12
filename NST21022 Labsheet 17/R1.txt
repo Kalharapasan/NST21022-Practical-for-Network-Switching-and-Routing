@@ -1,0 +1,21 @@
+R1>enable
+R1#configure terminal
+R1(config)#ip route 0.0.0.0 0.0.0.0 10.1.1.2
+R1(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.1 5
+R1(config)#ip route 192.168.1.0 255.255.255.0 10.1.1.2
+R1(config)#ip route 192.168.2.0 255.255.255.0 10.1.1.2
+R1(config)#ip route 192.168.1.0 255.255.255.0 192.168.2.1 5
+R1(config)#ip route 192.168.2.0 255.255.255.0 192.168.2.1 5
+R1(config)#ipv6 route ::/0 2001:DB8:ACAD:4::2
+R1(config)#ipv6 route ::/0 2001:DB8:ACAD:2::1 5
+R1(config)#ipv6 route 2001:DB8:ACAD:1::/64 2001:DB8:ACAD:4::2
+R1(config)#ipv6 route 2001:DB8:ACAD:2::/64 2001:DB8:ACAD:4::2
+R1(config)#ipv6 route 2001:DB8:ACAD:1::/64 2001:DB8:ACAD:2::1 5
+R1(config)#ipv6 route 2001:DB8:ACAD:2::/64 2001:DB8:ACAD:2::1 5
+R1(config)#ip route 192.168.2.0 255.255.255.0 10.1.1.2
+R1(config)#ip route 192.168.1.0 255.255.255.0 G0/0/0 5
+R1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#

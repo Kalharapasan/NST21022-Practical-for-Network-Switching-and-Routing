@@ -1,0 +1,346 @@
+enable
+configure terminal
+hostname S3
+
+Switch>
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S3
+S3(config)#
+S3#
+
+#####################################################################################################################################
+
+ip domain-name ccna.com
+
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#ip domain-name ccna.com
+S3(config)#
+
+#####################################################################################################################################
+
+exit
+
+show vlan brief
+
+S3(config)#exit
+S3#
+S3#show vlan brief
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S3#
+S3#
+
+#####################################################################################################################################
+
+configure terminal
+vlan 10
+name Staff
+vlan 20
+name Student
+vlan 30
+name Guest
+vlan 99
+name Management
+vlan 150
+name VOICE
+exit
+exit   
+show vlan brief
+
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#vlan 10
+S3(config-vlan)#name Staff
+S3(config-vlan)#vlan 20
+S3(config-vlan)#name Student
+S3(config-vlan)#vlan 30
+S3(config-vlan)#name Guest
+S3(config-vlan)#vlan 99
+S3(config-vlan)#name Management
+S3(config-vlan)#vlan 150
+S3(config-vlan)#name VOICE
+S3(config-vlan)#exit
+S3(config)#exit   
+S3#show vlan brief
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   Staff                            active    
+20   Student                          active    
+30   Guest                            active    
+99   Management                       active    
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S3#
+
+
+#####################################################################################################################################
+
+enable
+configure terminal
+
+interface fa0/1
+switchport mode access
+switchport access vlan 10
+exit
+
+interface fa0/11
+switchport mode access
+switchport access vlan 20
+exit
+
+
+
+interface fa0/21
+switchport mode access
+switchport access vlan 30
+exit
+
+
+interface fa0/24
+switchport mode access
+switchport access vlan 99
+exit
+
+exit
+show vlan brief
+
+S3#enable
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#
+S3(config)#interface fa0/1
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 10
+S3(config-if)#exit
+S3(config)#
+S3(config)#interface fa0/11
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 20
+S3(config-if)#exit
+S3(config)#
+S3(config)#
+S3(config)#
+S3(config)#interface fa0/21
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 30
+S3(config-if)#exit
+S3(config)#
+S3(config)#
+S3(config)#interface fa0/24
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 99
+S3(config-if)#exit
+S3(config)#
+S3(config)#exit
+S3#show vlan brief
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/22, Fa0/23
+                                                Gig0/1, Gig0/2
+10   Staff                            active    Fa0/1
+20   Student                          active    Fa0/11
+30   Guest                            active    Fa0/21
+99   Management                       active    Fa0/24
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S3#
+
+
+#####################################################################################################################################
+
+enable
+configure terminal
+interface range g0/1 - 2
+switchport mode trunk
+switchport trunk native vlan 99
+
+show interface trunk
+show interface g0/1 switchport
+show vlan
+
+S3#
+S3#enable
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#interface range g0/1 - 2
+S3(config-if-range)#switchport mode trunk
+S3(config-if-range)#switchport trunk native vlan 99
+S3(config-if-range)#
+S3(config-if-range)#
+S3(config-if-range)#
+S3#
+
+S3#
+S3#show interface trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/2      on           802.1q         trunking      99
+
+Port        Vlans allowed on trunk
+Gig0/2      1-1005
+
+Port        Vlans allowed and active in management domain
+Gig0/2      1,10,20,30,99,150
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig0/2      10,20,30,150
+
+S3#show interface g0/1 switchport
+Name: Gig0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 99 (Management)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+S3#show vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/22, Fa0/23
+                                                Gig0/1
+10   Staff                            active    Fa0/1
+20   Student                          active    Fa0/11
+30   Guest                            active    Fa0/21
+99   Management                       active    Fa0/24
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0
+10   enet  100010     1500  -      -      -        -    -        0      0
+20   enet  100020     1500  -      -      -        -    -        0      0
+30   enet  100030     1500  -      -      -        -    -        0      0
+99   enet  100099     1500  -      -      -        -    -        0      0
+150  enet  100150     1500  -      -      -        -    -        0      0
+1002 fddi  101002     1500  -      -      -        -    -        0      0   
+1003 tr    101003     1500  -      -      -        -    -        0      0   
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+
+Remote SPAN VLANs
+------------------------------------------------------------------------------
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+S3#
+S3#
+S3#
+S3#
+S3#
+
+
+
+#####################################################################################################################################
+
+username root secret cisco
+
+S2#enable
+S2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#username root secret cisco
+S2(config)#
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+#####################################################################################################################################
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################
+
+
+#####################################################################################################################################

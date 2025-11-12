@@ -1,0 +1,19 @@
+S1>enable
+S1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#interface range fa0/11-12
+S1(config-if-range)#shutdown
+S1(config-if-range)#channel-group 1 mode desirable
+S1(config-if-range)#no shutdown
+S1(config-if-range)#interface port-channel 1
+S1(config-if)#switchport mode trunk
+S1(config-if)#vlan 100
+S1(config-vlan)#name Native
+S1(config-vlan)#interface GigabitEthernet0/1
+S1(config-if)#switchport trunk native vlan 100
+S1(config-if)#switchport nonegotiate
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#

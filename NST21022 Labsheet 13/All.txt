@@ -1,0 +1,135 @@
+Colors
+---------------------------------------------------------------------------
+
+enable
+configure terminal
+hostname Colors
+
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+vlan 40
+name Yellow
+vlan 50
+name White
+vlan 60
+name Black
+
+
+
+interface vlan 10
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+interface vlan 20
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+interface vlan 30
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+
+interface vlan 40
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+
+interface vlan 50
+ip address 192.168.5.1 255.255.255.0
+no shutdown
+
+interface vlan 60
+ip address 192.168.6.1 255.255.255.0
+no shutdown
+
+interface range g0/1-2
+switchport mode trunk
+switchport trunk encapsulation dot1q
+
+interface range g0/1-2
+switchport mode access
+switchport mode trunk
+
+exit
+exit
+ip routing
+
+copy running-config startup-config
+
+show ip route
+
+-----------------------------------------------------------------
+S1
+-----------------------------------------------------------------
+
+enable
+configure terminal
+hostname S1
+
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+
+interface range f0/1-10
+switchport mode access
+switchport access vlan 10
+
+interface range f0/11-19
+switchport mode access
+switchport access vlan 20
+
+interface range f0/20-24
+switchport mode access
+switchport access vlan 30
+
+interface g0/1
+switchport mode access
+switchport mode trunk
+
+exit
+exit
+copy running-config startup-config
+
+-------------------------------------------------------------------------
+S2
+-------------------------------------------------------------------------
+
+enable
+configure terminal
+hostname S2
+
+vlan 40
+name Yellow
+vlan 50
+name White
+vlan 60
+name Black
+
+interface range f0/1-10
+switchport mode access
+switchport access vlan 40
+
+interface range f0/11-20
+switchport mode access
+switchport access vlan 50
+
+interface range f0/21-24
+switchport mode access
+switchport access vlan 60
+
+interface g0/1
+switchport mode access
+switchport mode trunk
+
+exit
+exit
+
+copy running-config startup-config
+
+
+

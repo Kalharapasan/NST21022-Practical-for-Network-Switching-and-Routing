@@ -1,0 +1,319 @@
+##############################################01.01#######################################################################################
+
+enable
+configure terminal
+hostname S3
+
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S3
+S3(config)#
+
+###############################################01.02######################################################################################
+
+ip domain-name ccna.com
+ 
+S3(config)#
+S3(config)#ip domain-name ccna.com
+S3(config)#
+ 
+###################################################02.04##################################################################################
+
+configure terminal
+vlan 10
+name Staff
+vlan 20
+name Student
+vlan 30
+name Guest
+vlan 99
+name Management
+vlan 150
+name VOICE
+exit
+exit   
+show vlan brief
+
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#vlan 10
+S3(config-vlan)#name Staff
+S3(config-vlan)#vlan 20
+S3(config-vlan)#name Student
+S3(config-vlan)#vlan 30
+S3(config-vlan)#name Guest
+S3(config-vlan)#vlan 99
+S3(config-vlan)#name Management
+S3(config-vlan)#vlan 150
+S3(config-vlan)#name VOICE
+S3(config-vlan)#exit
+S3(config)#exit   
+S3#show vlan brief
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   Staff                            active    
+20   Student                          active    
+30   Guest                            active    
+99   Management                       active    
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S3#
+
+####################################################02.06#################################################################################
+
+enable
+configure terminal
+
+interface fa0/1
+switchport mode access
+switchport access vlan 10
+exit
+
+interface fa0/11
+switchport mode access
+switchport access vlan 20
+exit
+
+
+
+interface fa0/21
+switchport mode access
+switchport access vlan 30
+exit
+
+
+interface fa0/24
+switchport mode access
+switchport access vlan 99
+exit
+
+exit
+show vlan brief
+
+
+S3#enable
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#
+S3(config)#interface fa0/1
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 10
+S3(config-if)#exit
+S3(config)#
+S3(config)#interface fa0/11
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 20
+S3(config-if)#exit
+S3(config)#
+S3(config)#
+S3(config)#
+S3(config)#interface fa0/21
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 30
+S3(config-if)#exit
+S3(config)#
+S3(config)#
+S3(config)#interface fa0/24
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 99
+S3(config-if)#exit
+S3(config)#
+S3(config)#exit
+S3#show vlan brief
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/22, Fa0/23
+                                                Gig0/1, Gig0/2
+10   Staff                            active    Fa0/1
+20   Student                          active    Fa0/11
+30   Guest                            active    Fa0/21
+99   Management                       active    Fa0/24
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S3#
+
+##############################################02.07#######################################################################################
+
+interface f0/1
+mls qos trust cos
+switchport voice vlan 150
+
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#interface f0/1
+S3(config-if)#mls qos trust cos
+S3(config-if)#switchport voice vlan 150
+S3(config-if)#
+
+################################################02.08#####################################################################################
+
+show vlan brief
+
+S2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/22, Fa0/23
+                                                Gig0/1, Gig0/2
+10   Staff                            active    Fa0/1
+20   Student                          active    Fa0/11
+30   Guest                            active    Fa0/21
+99   Management                       active    Fa0/24
+150  VOICE                            active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+S2#
+S2#
+
+##################################################03.02###################################################################################
+
+enable
+configure terminal
+interface range g0/1 - 2
+switchport mode trunk
+switchport trunk native vlan 99
+
+
+S3(config-if)#interface range g0/1 - 2
+S3(config-if-range)#switchport mode trunk
+S3(config-if-range)#switchport trunk native vlan 99
+S3(config-if-range)#%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/2 on VLAN0099. Port consistency restored.
+
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet0/2 on VLAN0001. Port consistency restored.
+
+
+S3(config-if-range)#
+
+#################################################03.02B####################################################################################
+
+show interface trunk
+
+S3#show interface trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/2      on           802.1q         trunking      99
+
+Port        Vlans allowed on trunk
+Gig0/2      1-1005
+
+Port        Vlans allowed and active in management domain
+Gig0/2      1,10,20,30,99,150
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig0/2      1,10,20,30,99,150
+
+S3#
+S3#
+
+################################################04.01#####################################################################################
+
+enable
+config t
+
+interface vlan 99
+ip address 192.168.4.12 255.255.255.0
+no shutdown 
+
+######################################################04.02###############################################################################
+
+username root secret cisco
+
+
+S3(config-if)#username root secret cisco
+S3(config)#
+S3(config)#crypto key generate rsa
+The name for the keys will be: S3.ccna.com
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+S3(config)#
+ 
+######################################################04.03###############################################################################
+
+crypto key generate rsa
+ 
+ 
+S3(config-if)#username root secret cisco
+S3(config)#
+S3(config)#crypto key generate rsa
+The name for the keys will be: S3.ccna.com
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+S3(config)#
+
+##############################################04.04#######################################################################################
+
+line vty 0 
+transport input ssh
+login local
+exec-timeout 6
+
+line vty 15 
+transport input ssh
+login local
+exec-timeout 6
+
+S3(config)#
+S3(config)#
+S3(config)#
+S3(config)#line vty 0 
+S3(config-line)#transport input ssh
+S3(config-line)#login local
+S3(config-line)#exec-timeout 6
+S3(config-line)#
+S3(config-line)#line vty 15 
+S3(config-line)#transport input ssh
+S3(config-line)#login local
+S3(config-line)#exec-timeout 6
+S3(config-line)#
+S3(config-line)#
+
+##############################################06#######################################################################################
+
+copy running-config startup-config
+
+
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#
+S3#

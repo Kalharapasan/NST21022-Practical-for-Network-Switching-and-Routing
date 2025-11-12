@@ -1,0 +1,18 @@
+R3>enable
+R3#configure terminal
+R3(config)#interface g0/0/0
+R3(config-if)#ip address 192.168.3.1 255.255.255.0
+R3(config-if)#no shutdown
+R3(config-if)#exit
+
+R3(config)#interface s0/1/1
+R3(config-if)#ip address 192.168.5.2 255.255.255.0
+R3(config-if)#no shutdown
+R3(config-if)#interface g0/0/0
+R3(config-if)#ip helper-address 192.168.5.1
+R3(config-if)#no shutdown
+R3(config-if)#exit
+
+R3#copy running-config startup-config
+
+R2#copy running-config startup-config

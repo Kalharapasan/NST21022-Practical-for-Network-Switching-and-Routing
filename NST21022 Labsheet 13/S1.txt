@@ -1,0 +1,34 @@
+Switch>enable
+Switch#configure terminal
+Switch(config)#hostname S1
+S1(config)#
+S1(config)#vlan 10
+S1(config-vlan)#name Red
+S1(config-vlan)#vlan 20
+S1(config-vlan)#name Green
+S1(config-vlan)#vlan 30
+S1(config-vlan)#name Blue
+S1(config-vlan)#interface range f0/1 - f0/10
+S1(config-if-range)#switchport mode access
+S1(config-if-range)#switchport access vlan 10
+S1(config-if-range)#
+S1(config-if-range)#interface range f0/11 - f0/20
+S1(config-if-range)#switchport mode access
+S1(config-if-range)#switchport access vlan 20
+S1(config-if-range)#
+S1(config-if-range)#interface range f0/21 - f0/24
+S1(config-if-range)#switchport mode access
+S1(config-if-range)#switchport access vlan 30
+
+
+S1(config-if)#interface g0/1
+S1(config-if)#switchport mode trunk
+S1(config-if)#
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#

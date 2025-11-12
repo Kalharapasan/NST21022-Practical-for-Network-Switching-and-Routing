@@ -1,0 +1,11 @@
+Switch>en 
+Switch#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface vlan1
+Switch(config-if)#ip address 192.168.1.98 255.255.255.224
+Switch(config-if)#no shutdown
+Switch(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+Switch(config-if)#
+Switch#

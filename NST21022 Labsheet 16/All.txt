@@ -1,0 +1,136 @@
+S1
+------------------------------------------------------------------------
+enable
+configure terminal
+interface range fa0/11-12
+shutdown
+channel-group 1 mode desirable
+no shutdown
+interface port-channel 1
+switchport mode trunk
+vlan 100
+name Native
+interface GigabitEthernet0/1
+switchport trunk native vlan 100
+switchport nonegotiate
+
+copy running-config startup-config
+
+
+------------------------------------------------------------------------
+S2
+------------------------------------------------------------------------
+enable
+configure terminal
+
+interface range f0/11-12
+shutdown
+channel-group 2 mode active
+no shutdown
+interface port-channel 2
+switchport mode trunk
+
+copy running-config startup-config
+
+------------------------------------------------------------------------
+S3
+------------------------------------------------------------------------
+
+enable
+configure terminal
+
+interface range f0/11-12
+shutdown
+channel-group 1 mode desirable
+no shutdown
+
+interface port-channel 1
+switchport mode trunk
+
+interface range f0/21 - 22
+shutdown
+channel-group 3 mode passive
+no shutdown
+interface port-channel 3
+switchport mode trunk
+
+interface range f0/3-10, f0/13-20, f0/23-24, g0/1-2
+shutdown
+vlan 999
+name BlackHole
+interface range f0/3-10, f0/13-20, f0/23-24, g0/1-2
+switchport access vlan 999
+
+interface range FastEthernet0/1-2
+switchport mode access
+switchport port-security
+switchport port-security maximum 4
+switchport port-security mac-address <PC-MAC-ADDRESS>
+switchport port-security mac-address sticky
+switchport port-security violation restrict
+
+interface range FastEthernet0/11-12
+ip dhcp snooping trust
+interface range FastEthernet0/1-2
+ip dhcp snooping limit rate 5
+
+interface range FastEthernet0/1-2
+spanning-tree portfast
+spanning-tree bpduguard enable
+
+copy running-config startup-config
+
+------------------------------------------------------------------------
+S4
+------------------------------------------------------------------------
+enable
+configure terminal
+
+ip dhcp snooping
+ip dhcp snooping vlan 30,40
+
+
+spanning-tree portfast default
+
+interface range f0/11-12
+shutdown
+channel-group 2 mode active
+no shutdown
+interface port-channel 2
+switchport mode trunk
+
+
+interface range f0/21-22
+channel-group 3 mode active
+no shutdown
+interface port-channel 3
+switchport mode trunk
+
+copy running-config startup-config
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+R2
+------------------------------------------------------------------------
+
+enable
+configure terminal
+interface g0/0/0
+standby version 2
+standby 1 ip 192.168.6.254
+
+copy running-config startup-config
+
+------------------------------------------------------------------------
+R3
+------------------------------------------------------------------------
+enable
+configure terminal
+
+interface g0/0/0
+standby version 2
+standby 1 ip 192.168.6.254
+standby 1 priority 150
+standby 1 preempt
+
+copy running-config startup-config
+

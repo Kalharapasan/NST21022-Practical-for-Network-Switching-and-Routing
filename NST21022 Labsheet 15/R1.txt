@@ -1,0 +1,41 @@
+Router>enable
+Router#configure terminal
+
+Router(config)#hostname R1
+
+Router(config)#ipv6 unicast-routing
+
+Router(config)#interface g0/0/0
+Router(config-if)#ipv6 address 2001:db8:acad:2::1/64
+Router(config-if)#ipv6 address fe80::1 link-local 
+Router(config-if)#no shutdown
+Router(config-if)#exit
+
+Router(config)#interface g0/0/1
+Router(config-if)#ipv6 address 2001:db8:acad:1::1/64
+Router(config-if)#ipv6 address fe80::2 link-local 
+Router(config-if)#no shutdown
+Router(config-if)#exit
+
+Router(config)#ipv6 dhcp pool R1-STATELESS
+Router(config-dhcpv6)#dns-server 2001:db8:acad::254
+Router(config-dhcpv6)#domain-name stateless.com
+Router(config-dhcpv6)#exit
+
+Router(config)#interface g0/0/1
+Router(config-if)#ipv6 nd other-config-flag
+Router(config-if)#ipv6 dhcp server R1-STATELESS
+Router(config-if)#exit
+
+Router(config)#ipv6 dhcp pool R2-STATEFUL
+Router(config-dhcpv6)#address prefix 2001:db8:acad:3::/64
+Router(config-dhcpv6)#dns-server 2001:db8:acad::254
+Router(config-dhcpv6)#domain-name stateful.com
+Router(config-dhcpv6)#exit
+
+Router(config)#interface g0/0/0
+Router(config-if)#ipv6 dhcp server R2-STATEFUL
+Router(config-if)#no shutdown
+Router(config-if)#exit
+
+R1#copy running-config startup-config

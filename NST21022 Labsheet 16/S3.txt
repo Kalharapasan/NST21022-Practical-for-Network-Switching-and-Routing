@@ -1,0 +1,38 @@
+S3>enable
+S3#configure terminal
+S3(config)#interface range f0/11-12
+S3(config-if-range)#shutdown
+S3(config-if-range)#channel-group 1 mode desirable
+S3(config-if-range)#no shutdown
+S3(config-if-range)#interface port-channel 1
+S3(config-if)#switchport mode trunk
+S3(config-if)#interface range f0/21 - 22
+S3(config-if-range)#shutdown
+S3(config-if-range)#channel-group 3 mode passive
+S3(config-if-range)#no shutdown
+S3(config-if-range)#interface port-channel 3
+S3(config-if)#switchport mode trunk
+S3(config-if)#interface range f0/3-10, f0/13-20, f0/23-24, g0/1-2
+S3(config-if-range)#shutdown
+S3(config-if-range)#vlan 999
+S3(config-vlan)#name BlackHole
+S3(config-vlan)#interface range f0/3-10, f0/13-20, f0/23-24, g0/1-2
+S3(config-if-range)#switchport access vlan 999
+S3(config-if-range)#interface range FastEthernet0/1-2
+S3(config-if-range)#switchport mode access
+S3(config-if-range)#switchport port-security
+S3(config-if-range)#switchport port-security maximum 4
+S3(config-if-range)#switchport port-security mac-address sticky
+S3(config-if-range)#switchport port-security violation restrict
+S3(config-if-range)#interface range FastEthernet0/11-12
+S3(config-if-range)#ip dhcp snooping trust
+S3(config-if-range)#interface range FastEthernet0/1-2
+S3(config-if-range)#ip dhcp snooping limit rate 5
+S3(config-if-range)#interface range FastEthernet0/1-2
+S3(config-if-range)#spanning-tree portfast
+S3(config-if-range)#spanning-tree bpduguard enable
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#

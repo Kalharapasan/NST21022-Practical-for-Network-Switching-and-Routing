@@ -1,0 +1,10 @@
+Enable
+Configure Terminal
+
+interface g0/0/0
+ip address 192.168.1.129 255.255.255.192
+no shutdown
+
+interface s0/1/0
+ip address 192.168.1.238 255.255.255.240
+no shutdown

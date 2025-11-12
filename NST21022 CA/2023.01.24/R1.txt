@@ -1,0 +1,15 @@
+
+
+
+
+interface GigabitEthernet0/0/0
+ ip address 172.168.10.129 255.255.255.192
+ no shutdown
+
+interface GigabitEthernet0/0/1
+ip address 172.168.10.1 255.255.255.128
+ no shutdown
+
+interface Serial0/1/0
+ ip address 172.168.10.241 255.255.255.252
+ no shutdown

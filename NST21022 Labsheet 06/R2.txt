@@ -1,0 +1,21 @@
+enable
+configure terminal
+
+
+interface g0/0/0 
+ip address 172.16.1.33 255.255.255.240
+no shutdown
+
+interface g0/0/1 
+ip address 172.16.1.49 255.255.255.240
+no shutdown
+
+interface s0/1/0 
+ip address 172.16.1.174 255.255.255.240
+no shutdown
+
+interface s0/1/1
+ip address 172.16.1.177 255.255.255.240
+no shutdown
+
+

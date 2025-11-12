@@ -1,0 +1,21 @@
+S4>enable
+S4#configure terminal
+S4(config)#ip dhcp snooping
+S4(config)#ip dhcp snooping vlan 30,40
+S4(config)#spanning-tree portfast default
+S4(config)#interface range f0/11-12
+S4(config-if-range)#shutdown
+S4(config-if-range)#channel-group 2 mode active
+S4(config-if-range)#no shutdown
+S4(config-if-range)#interface port-channel 2
+S4(config-if)#switchport mode trunk
+S4(config-if)#interface range f0/21-22
+S4(config-if-range)#channel-group 3 mode active
+S4(config-if-range)#no shutdown
+S4(config-if-range)#interface port-channel 3
+S4(config-if)#switchport mode trunk
+S4#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S4#

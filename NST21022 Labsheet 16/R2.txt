@@ -1,0 +1,14 @@
+R3>enable
+R3#configure terminal
+
+R3(config)#interface g0/0/0
+R3(config-if)#standby version 2
+R3(config-if)#standby 1 ip 192.168.6.254
+% Warning: address is not within a subnet on this interface
+R3(config-if)#standby 1 priority 150
+R3(config-if)#
+R3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R3#

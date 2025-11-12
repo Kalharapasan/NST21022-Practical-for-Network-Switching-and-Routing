@@ -1,0 +1,39 @@
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S2
+S2(config)#ip domain-name ccna.com
+S2(config)#vlan 10
+S2(config-vlan)#name Res
+S2(config-vlan)#vlan 10
+S2(config-vlan)#name Red
+S2(config-vlan)#vlan 20
+S2(config-vlan)#name Green
+S2(config-vlan)#vlan 30
+S2(config-vlan)#name Blue
+S2(config-vlan)#vlan 999
+S2(config-vlan)#name Native
+S2(config-vlan)#exit
+S2(config)#interface fa0/1
+S2(config-if)#int range fa0/1-8	
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 10
+S2(config-if-range)#exit
+S2(config)#interface fa0/11
+S2(config-if)#int range fa0/9-16
+S2(config-if-range)#switchport mode access	
+S2(config-if-range)#switchport access vlan 20
+S2(config-if-range)#exit
+S2(config)#interface fa0/21
+S2(config-if)#int range fa0/17-24	
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 30
+S2(config-if-range)#exit
+S2(config)#interface g0/1
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 999 
+S2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#

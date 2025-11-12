@@ -1,0 +1,53 @@
+R
+-------
+enable
+configure terminal
+
+interface g0/0/0
+no shutdown
+
+interface g0/0/0.10
+encapsulation dot1Q 10
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+interface g0/0/0.20
+encapsulation dot1Q 20
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+interface g0/0/0.30
+encapsulation dot1Q 30
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+
+copy running-config startup-config
+
+
+S
+-----------------------
+
+enable
+configure terminal
+vlan 10
+name Staffs
+vlan 20
+name Students
+vlan 30
+name Guests
+
+interface range fa0/1-2 
+switchport mode access
+switchport access vlan 10
+interface range fa0/11-12
+switchport mode access
+switchport access vlan 20
+interface range fa0/21-22
+switchport mode access 
+switchport access vlan 30
+
+interface g0/1
+switchport mode trunk
+switchport nonegotiate
+
+copy running-config startup-config

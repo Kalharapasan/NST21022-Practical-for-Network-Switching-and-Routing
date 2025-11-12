@@ -1,0 +1,27 @@
+S1>enable
+S1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#vlan 10
+S1(config-vlan)#name Staffs
+S1(config-vlan)#vlan 20
+S1(config-vlan)#name Students
+S1(config-vlan)#vlan 30
+S1(config-vlan)#name Guests
+S1(config-vlan)#interface range fa0/1-2 
+S1(config-if-range)#switchport mode access
+S1(config-if-range)#switchport access vlan 10
+S1(config-if-range)#interface range fa0/11-12
+S1(config-if-range)#switchport mode access
+S1(config-if-range)#switchport access vlan 20
+S1(config-if-range)#interface range fa0/21-22
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 30
+S1(config-if)#interface g0/1
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport nonegotiate
+S1(config-if)#
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#

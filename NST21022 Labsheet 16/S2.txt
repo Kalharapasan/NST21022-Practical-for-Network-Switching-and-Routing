@@ -1,0 +1,14 @@
+S2>enable
+S2#configure terminal
+S2(config)#
+S2(config)#interface range f0/11-12
+S2(config-if-range)#shutdown
+S2(config-if-range)#channel-group 2 mode active
+S2(config-if-range)#no shutdown
+S2(config-if-range)#interface port-channel 2
+S2(config-if)#switchport mode trunk
+S2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#

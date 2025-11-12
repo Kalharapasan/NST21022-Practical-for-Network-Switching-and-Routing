@@ -1,0 +1,20 @@
+R1>enable
+R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#
+R1(config)#interface g0/0/0
+R1(config-if)#ip address 192.168.1.1 255.255.255.0
+R1(config-if)#no shutdown
+R1(config-if)#exit
+
+R1(config)#interface s0/1/0
+R1(config-if)#ip address 192.168.4.2 255.255.255.0
+R1(config-if)#no shutdown
+R1(config-if)#exit
+
+R1(config)#interface g0/0/0
+R1(config-if)#ip helper-address 192.168.4.1
+R1(config-if)#no shutdown
+R1(config-if)#exit
+
+R1#copy running-config startup-config
